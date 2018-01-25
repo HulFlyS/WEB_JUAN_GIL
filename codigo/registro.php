@@ -67,7 +67,8 @@
     <form action="login.php" method="post">
       <p>Usuario<br><input name="user" required></p>
       <p>Contraseña<br><input name="pass" type="password" required></p>
-      <p><input type="submit" value="Log In"></p>
+      <p>Email<br><input name="mail" required></p>
+      <p><input type="submit" value="Registrarse"></p>
     </form>
   </body>
 </html>

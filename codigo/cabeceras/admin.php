@@ -30,6 +30,7 @@
           }
            ?>
       </div>
+    </div>
       <div class="row">
         <div class="col-md-3">
           <a href="/iaw/WEB_JUAN_GIL/codigo/layout.php" class="text-justify">Inicio</a>
@@ -47,5 +48,4 @@
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>
         </div>
     </div>
-  </div>
 </body>

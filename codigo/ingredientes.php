@@ -20,10 +20,8 @@
               exit();
           }
 
-        $c1="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
-        if ($result = $connection->query($consulta)) {}
-        $c2="INSERT INTO tienen values('".$_POST['id_recetas']."',NULL,'".$_POST['cantidad']."');";
-          if ($result = $connection->query($consulta)) {
+        $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
+        if ($result = $connection->query($consulta)) {
             echo "Ingrediente introducido con éxito";
               if ($result->num_rows===0) {
                   echo "Campo inválido";
@@ -42,14 +40,12 @@
      ?>
 
      <div class="container">
-       <div class="row mt-6 justify-content-center">
-         <div class="col-sm-7 col-md-4 bg-warning">
+       <div class="row mt-6 justify-content-center pt-5">
+         <div class="col-sm-7 col-md-4 bg-secondary">
           <form action="login.php" method="post">
-            <p>Añadir Ingredientes y Cantidades<br></p>
-            <p>Receta nº:<br><input name="id_recetas" required></p>
+            <p>Añadir Ingredientes<br></p>
             <p>Ingrediente:<br><input name="nombre" required></p>
-            <p>Cantidad:<br><input name="cantidad" required></p>
-            <p><input type="submit"  class="btn btn-primary" value="Añadir"></p>
+            <p><input type="submit"  class="btn btn-warning" value="Añadir"></p>
           </form>
         </div>
       </div>

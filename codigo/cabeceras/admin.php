@@ -13,25 +13,25 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <h1>RECETAS FÁCILES</h1>
-        </div>
+      <div class="row bg-dark">
         <div class="col-md-7">
+          <h1 class='text-white mt-3'>RECETAS FÁCILES</h1>
+        </div>
+        <div class="col-md-5">
           <?php
           if (isset($_SESSION['user'])) {
-            echo "<h4>Estás logueado como $_SESSION[user]</h4>";
+            echo "<h4 class='text-white pt-2'>Estás logueado como $_SESSION[user]</h4>";
             echo "<a class='btn btn-primary' href='/iaw/WEB_JUAN_GIL/codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
           }
           else{
-            echo "<h4>No estás conectado, logueate o registrate</h4>";
-            echo "<a class='btn btn-primary' href='login.php'>Logueate</a>";
+            echo "<h4 class='text-white'>No estás conectado, logueate o registrate</h4>";
+            echo "<a class='btn btn-primary mr-5' href='login.php'>Iniciar Sesión  </a>";
             echo "<a class='btn btn-warning' href='registro.php'>Registrate</a>";
           }
            ?>
       </div>
     </div>
-      <div class="row">
+      <div class="row bg-dark pt-3 pb-2">
         <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/layout.php" class="text-justify">Inicio</a>
         </div>

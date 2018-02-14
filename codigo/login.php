@@ -57,13 +57,13 @@
      ?>
 
     <div class="container">
-      <div class="row mt-6 justify-content-center">
-        <div class="col-sm-7 col-md-4 bg-warning">
+      <div class="row mt-6 justify-content-center pt-5"">
+        <div class="col-sm-7 col-md-4 bg-secondary">
          <form action="login.php" method="post">
            <p>Usuario<br><input name="user" required></p>
            <p>Contraseña<br><input name="pass" type="password" required></p>
            <p>Si no estás registrado, puedes hacerlo <a href="registro.php">aquí</a></p>
-           <p><input type="submit"  class="btn btn-primary" value="Log In"></p>
+           <p><input type="submit"  class="btn btn-primary" value="Iniciar Sesión"></p>
          </form>
        </div>
      </div>

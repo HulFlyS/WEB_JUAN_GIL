@@ -43,8 +43,8 @@
      ?>
 
     <div class="container">
-     <div class="row mt-6 justify-content-center">
-       <div class="col-sm-7 col-md-4 bg-primary">
+     <div class="row mt-6 justify-content-center pt-5">
+       <div class="col-sm-7 col-md-4 bg-secondary">
          <form action="registro.php" method="post">
            <p>Usuario<br><input name="user" required></p>
            <p>Contraseña<br><input name="pass" type="password" required></p>

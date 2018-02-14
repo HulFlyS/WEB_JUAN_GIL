@@ -14,10 +14,10 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <h1>RECETAS FÁCILES</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-7">
           <?php
           if (isset($_SESSION['user'])) {
             echo "<h4>Estás logueado como $_SESSION[user]</h4>";
@@ -32,20 +32,24 @@
       </div>
     </div>
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/layout.php" class="text-justify">Inicio</a>
         </div>
         <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Recetas</a>
         </div>
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Editar Recetas</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/editar_recetas.php" class="text-justify">Editar Recetas</a>
+        </div>
+        <div class="col-md-2">
+          <a href="/iaw/WEB_JUAN_GIL/codigo/ingredientes.php" class="text-justify">Ingredientes</a>
         </div>
         <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/informacion.php" class="text-justify">Información</a>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>
         </div>
     </div>
+  </div>
 </body>

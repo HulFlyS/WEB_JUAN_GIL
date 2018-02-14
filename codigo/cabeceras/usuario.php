@@ -14,10 +14,10 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-5">
           <h1>RECETAS FÁCILES</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-7">
           <?php
           if (isset($_SESSION['user'])) {
             echo "<h4>Estás logueado como $_SESSION[user]</h4>";

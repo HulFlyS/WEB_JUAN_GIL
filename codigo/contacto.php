@@ -19,7 +19,7 @@
            }
      ?>
      <div class="row justify-content-center">
-         <div>
+         <div class="col-md-11">
            <img src="../imagenes/contacto.jpg" class="img-fluid" alt="Responsive image" >
          </div>
      </div>

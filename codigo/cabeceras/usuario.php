@@ -1,5 +1,6 @@
-<?php
+<?php if (!isset($_SESSION)){
   session_start();
+}
 ?>
 <html lang="en">
   <head>
@@ -20,11 +21,11 @@
         <div class="col-md-5">
           <?php
           if (isset($_SESSION['user'])) {
-            echo "<h4 class='text-white pt-2'>Estás logueado como $_SESSION[user]</h4>";
+            echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
             echo "<a class='btn btn-primary' href='/iaw/WEB_JUAN_GIL/codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
           }
           else{
-            echo "<h4 class='text-white'>No estás conectado, logueate o registrate</h4>";
+            echo "<h4 class='text-white mt-2'>No estás conectado, logueate o registrate</h4>";
             echo "<a class='btn btn-primary mr-5' href='login.php'>Iniciar Sesión  </a>";
             echo "<a class='btn btn-warning' href='registro.php'>Registrate</a>";
           }

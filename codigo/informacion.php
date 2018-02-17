@@ -13,10 +13,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../codigo/cabeceras/admin.php");
-             } else {
+             }
+          if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
                include("../codigo/cabeceras/usuario.php");
+           } else {
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
+    <div class="container">
+     <div class="row justify-content-center">
+         <div class="col-md-12">
+           <img src="../imagenes/informacion.png" class="img-fluid" alt="Responsive image" >
+         </div>
+     </div>
+   </div>
 </body>

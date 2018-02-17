@@ -1,5 +1,6 @@
-<?php
+<?php if (!isset($_SESSION)){
   session_start();
+}
 ?>
 <html lang="en">
   <head>
@@ -14,8 +15,11 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../codigo/cabeceras/admin.php");
-             } else {
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
                include("../codigo/cabeceras/usuario.php");
+           } else {
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
     <div class="container">

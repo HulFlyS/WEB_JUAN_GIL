@@ -16,7 +16,7 @@
     <div class="container">
       <div class="row bg-dark">
         <div class="col-md-7">
-          <h2 class='text-white mt-3'>RECETAS FÁCILES</h2>
+          <h1 class='text-white mt-3'>RECETAS FÁCILES</h1>
         </div>
         <div class="col-md-5">
           <?php
@@ -33,22 +33,13 @@
       </div>
     </div>
       <div class="row bg-dark pt-3 pb-2">
-        <div class="col-md-2">
+        <div class="col-md-4">
           <a href="/iaw/WEB_JUAN_GIL/codigo/layout.php" class="text-justify">Inicio</a>
         </div>
-        <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Recetas</a>
+        <div class="col-md-4">
+          <a href="/iaw/WEB_JUAN_GIL/codigo/informacion.php" class="text-justify">Información</a>
         </div>
-        <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/editar_recetas.php" class="text-justify">Editar Recetas</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/ingredientes.php" class="text-justify">Ingredientes</a>
-        </div>
-        <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/usuarios.php" class="text-justify">Usuarios</a>
-        </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>
         </div>
     </div>

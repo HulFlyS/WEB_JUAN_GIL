@@ -1,5 +1,6 @@
-<?php
+<?php if (!isset($_SESSION)){
   session_start();
+}
 ?>
 <html lang="en">
   <head>
@@ -64,7 +65,7 @@
             <p>Email:<br><input value='<?php echo $mail; ?>' type="text" name="mail" required></p>
             <input type="hidden" name="id_miembros" value='<?php echo $id; ?>'>
             <p><input type="submit" class="btn btn-primary" value="Editar y Cerrar sesión"></p>
-            <p>*Cuanto cambies tús datos se cerrará la sesión y deberas iniciar sesión de nuevo con tús nuevos datos<br></p>
+            <p>*Cuanto cambies tús datos se cerrará la sesión y deberas iniciar sesión con tús nuevos datos<br></p>
           </form>
         </div>
       </div>

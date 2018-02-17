@@ -1,5 +1,6 @@
-<?php
+<?php if (!isset($_SESSION)){
   session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,10 +45,13 @@
                  $_SESSION["tipo"]=$tipo;
 
                  if ($tipo=='admin') {
-                   header("Location: cabeceras/admin.php");
+                   header("Location: layout.php");
                  }
-                 else {
-                   header("Location: cabeceras/usuario.php");
+                 elseif ($tipo=='usuario') {
+                   header("Location: layout.php");
+                 }
+                 else{
+                    header("Location: layout.php");
                  }
                }
            } else {

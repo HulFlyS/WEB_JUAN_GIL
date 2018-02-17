@@ -14,46 +14,48 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php
-        if (isset($_POST["user"])) {
-          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
-        $consulta="select * from miembros where
-        user='".$_POST["user"]."' and pass=md5('".$_POST["pass"]."');";
-        if ($result = $connection->query($consulta)) {
-            if ($result->num_rows===0) {
-                echo "LOGIN INVALIDO";
-              } else {
-                $obj = $result->fetch_object();
-                $tipo=$obj->tipo;
 
-                $_SESSION["user"]=$_POST["user"];
-                $_SESSION["language"]="es";
-                $_SESSION["tipo"]=$tipo;
-
-                if ($tipo=='admin') {
-                  header("Location: cabeceras/admin.php");
-                }
-                else {
-                  header("Location: cabeceras/usuario.php");
-                }
-              }
-          } else {
-            echo "Wrong Query";
-          }
-      }
-
-
-    ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["user"])=='admin' ) {
                include("../codigo/cabeceras/admin.php");
              } else {
                include("../codigo/cabeceras/usuario.php");
            }
+     ?>
+
+     <?php
+         if (isset($_POST["user"])) {
+           $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+           if ($connection->connect_errno) {
+               printf("Connection failed: %s\n", $connection->connect_error);
+               exit();
+           }
+         $consulta="select * from miembros where
+         user='".$_POST["user"]."' and pass=md5('".$_POST["pass"]."');";
+         if ($result = $connection->query($consulta)) {
+             if ($result->num_rows===0) {
+                 echo "<h4 class='text-primary ml-5 mt-5'>Login Inválido</h4>";
+               } else {
+                 $obj = $result->fetch_object();
+                 $tipo=$obj->tipo;
+
+                 $_SESSION["user"]=$_POST["user"];
+                 $_SESSION["language"]="es";
+                 $_SESSION["tipo"]=$tipo;
+
+                 if ($tipo=='admin') {
+                   header("Location: cabeceras/admin.php");
+                 }
+                 else {
+                   header("Location: cabeceras/usuario.php");
+                 }
+               }
+           } else {
+             echo "Wrong Query";
+           }
+       }
+
+
      ?>
 
     <div class="container">

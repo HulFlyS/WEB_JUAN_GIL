@@ -12,16 +12,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
                include("../codigo/cabeceras/admin.php");
              } else {
                include("../codigo/cabeceras/usuario.php");
            }
      ?>
-     <div class="row justify-content-center">
-         <div class="col-md-10">
-           <img src="../imagenes/inicio.jpg" class="img-fluid" alt="Responsive image" >
-         </div>
-     </div>
-</body>
-  
+
+     <?php
+        if (isset($_GET["ing"])) {
+          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          $consulta="DELETE FROM ingredientes WHERE id_ingredientes='".$_GET['ing']."';";
+          echo "$consulta";
+          if ($result = $connection->query($consulta)) {
+            header("Location: ingredientes.php");
+          }
+      }
+     ?>
+
+   </body>

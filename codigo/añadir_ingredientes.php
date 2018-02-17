@@ -12,16 +12,42 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
+    <?php
+        if (isset($_POST["nombre"])) {
+          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+
+        $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
+        if ($result = $connection->query($consulta)) {
+          echo "Has añadido el ingrediente con éxito";
+            if ($result->num_rows===0) {
+                echo "Ingrediente inválido";
+              }
+          } else {
+            echo "Wrong Query";
+          }
+      }
+    ?>
+
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../codigo/cabeceras/admin.php");
              } else {
                include("../codigo/cabeceras/usuario.php");
            }
      ?>
-     <div class="row justify-content-center">
-         <div class="col-md-10">
-           <img src="../imagenes/inicio.jpg" class="img-fluid" alt="Responsive image" >
-         </div>
+
+    <div class="container">
+     <div class="row mt-6 justify-content-center pt-5">
+       <div class="col-sm-7 col-md-4 bg-secondary">
+         <form action="ingredientes.php" method="post">
+           <p>Introduce aquí un nuevo ingrediente</p>
+           <p>Ingrediente<br><input name="nombre" required></p>
+           <p><input type="submit"  class="btn btn-primary" value="Añadir Ingrediente"></p>
+         </form>
+       </div>
      </div>
+   </div>
 </body>
-  

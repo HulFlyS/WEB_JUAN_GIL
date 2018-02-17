@@ -12,26 +12,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php
-        if (isset($_POST["user"])) {
-          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
-
-        $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
-        if ($result = $connection->query($consulta)) {
-            echo "Ingrediente introducido con éxito";
-              if ($result->num_rows===0) {
-                  echo "Campo inválido";
-                }
-            } else {
-            echo "Wrong Query";
-          }
-      }
-    ?>
-
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
                include("../codigo/cabeceras/admin.php");
              } else {
@@ -39,15 +19,48 @@
            }
      ?>
 
-     <div class="container">
-       <div class="row mt-6 justify-content-center pt-5">
-         <div class="col-sm-7 col-md-4 bg-secondary">
-          <form action="login.php" method="post">
-            <p>Añadir Ingredientes<br></p>
-            <p>Ingrediente:<br><input name="nombre" required></p>
-            <p><input type="submit"  class="btn btn-warning" value="Añadir"></p>
-          </form>
-        </div>
-      </div>
-    </div>
+     <?php
+             //CREATING THE CONNECTION
+             $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+             $connection->set_charset("uft8");
+             //TESTING IF THE CONNECTION WAS RIGHT
+             if ($connection->connect_errno) {
+                 printf("Connection failed: %s\n", $connection->connect_error);
+                 exit();
+             }
+             //MAKING A SELECT QUERY
+             /* Consultas de selección que devuelven un conjunto de resultados */
+               $query="SELECT * from ingredientes";
+             if ($result = $connection->query($query)) {
+             ?>
+
+                 <table class="table">
+                   <thead>
+                     <tr>
+                       <th scope="col">Ingrediente</th>
+                       <th scope="col">Editar</th>
+                       <th scope="col">Borrar</th>
+                     </tr>
+                   </thead>
+
+             <?php
+                 echo "<a class='btn btn-primary mt-3 mb-3' href='añadir_ingredientes.php'>Añadir Ingrediente </a>";
+                 while($obj = $result->fetch_object()) {
+
+                     echo "<tbody>
+                             <tr>
+                             <th scope='row'>$obj->nombre</th>
+                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/papelera.png'></a></td>
+                           </tr>
+                           ";
+                 }
+                 echo "</tbody>";
+
+                 $result->close();
+                 unset($obj);
+                 unset($connection);
+             }
+           ?>
+     </table>
 </body>

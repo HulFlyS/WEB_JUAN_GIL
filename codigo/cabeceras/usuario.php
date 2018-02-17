@@ -39,7 +39,7 @@
           <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Recetas</a>
         </div>
         <div class="col-md-3">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/informacion.php" class="text-justify">Información</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/panel_usuario.php?id=$obj->id_miembros" class="text-justify">Panel usuario</a>
         </div>
         <div class="col-md-3">
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>

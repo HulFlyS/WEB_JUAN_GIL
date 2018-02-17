@@ -15,12 +15,12 @@
     <div class="container">
       <div class="row bg-dark">
         <div class="col-md-7">
-          <h1 class='text-white mt-3'>RECETAS FÁCILES</h1>
+          <h2 class='text-white mt-3'>RECETAS FÁCILES</h2>
         </div>
         <div class="col-md-5">
           <?php
           if (isset($_SESSION['user'])) {
-            echo "<h4 class='text-white pt-2'>Estás logueado como $_SESSION[user]</h4>";
+            echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
             echo "<a class='btn btn-primary' href='/iaw/WEB_JUAN_GIL/codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
           }
           else{
@@ -45,7 +45,7 @@
           <a href="/iaw/WEB_JUAN_GIL/codigo/ingredientes.php" class="text-justify">Ingredientes</a>
         </div>
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/informacion.php" class="text-justify">Información</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/usuarios.php" class="text-justify">Usuarios</a>
         </div>
         <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>

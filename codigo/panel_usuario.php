@@ -29,7 +29,7 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM ingredientes";
+               $consulta="SELECT * FROM miembros WHERE user='".$_SESSION["user"]."'";
              if ($result = $connection->query($consulta)) {
              ?>
 
@@ -37,22 +37,21 @@
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Ingrediente</th>
+                       <th scope="col">Usuario</th>
+                       <th scope="col">Email</th>
                        <th scope="col">Editar</th>
-                       <th scope="col">Borrar</th>
                      </tr>
                    </thead>
-              </div>
+             </div>
 
              <?php
-                 echo "<a class='btn btn-primary mt-3 mb-3' href='añadir_ingredientes.php'>Añadir Ingrediente </a>";
                  while($obj = $result->fetch_object()) {
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->nombre</th>
-                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
-                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/papelera.png'></a></td>
+                             <th scope='row'>$obj->user</th>
+                             <th scope='row'>$obj->mail</th>
+                             <td><a href='editar_panel_usuario.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
                            </tr>
                            ";
                  }

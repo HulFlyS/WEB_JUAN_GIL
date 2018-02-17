@@ -18,10 +18,20 @@
                include("../codigo/cabeceras/usuario.php");
            }
      ?>
-     <div class="row justify-content-center">
-         <div class="col-md-10">
-           <img src="../imagenes/informacion.png" class="img-fluid" alt="Responsive image" >
-         </div>
-     </div>
 
-</body>
+     <?php
+        if (isset($_GET["id"])) {
+          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          $consulta="DELETE FROM miembros WHERE id_miembros='".$_GET['id']."';";
+          echo "$consulta";
+          if ($result = $connection->query($consulta)) {
+            header("Location: usuarios.php");
+          }
+      }
+     ?>
+
+   </body>

@@ -19,7 +19,7 @@
            }
      ?>
 
-     <?php if (!isset($_POST["id_ingredientes"])) : ?>
+     <?php if (!isset($_POST["id_miembros"])) : ?>
 
        <?php
 
@@ -31,22 +31,25 @@
              exit();
          }
 
-         $c1="SELECT * from ingredientes where id_ingredientes='".$_GET["ing"]."'";
+         $c1="SELECT * from miembros where id_miembros='".$_GET["id"]."'";
 
          if ($result = $connection->query($c1))  {
 
            $obj = $result->fetch_object();
 
            if ($result->num_rows==0) {
-             echo "NO EXISTE ESE CLIENTE";
+             echo "No existe el usuario";
              exit();
            }
 
-           $cod = $obj->id_ingredientes;
-           $nom = $obj->nombre;
+           $id = $obj->id_miembros;
+           $user = $obj->user;
+           $pass = $obj->pass;
+           $mail = $obj->mail;
+           $tipo = $obj->tipo;
 
          } else {
-           echo "No se han recuperar los datos cliente";
+           echo "No se han recuperado los datos del usuario";
            exit();
          }
 
@@ -56,10 +59,12 @@
        <div class="row mt-6 justify-content-center mt-5">
          <div class="col-sm-7 col-md-4 bg-secondary">
           <form method="post">
-            <p>Editar Ingrediente:<br></p>
-            <p>Ingrediente:<br>
-            <input value='<?php echo $nom; ?>' type="text" name="nombre" required></p>
-            <input type="hidden" name="id_ingredientes" value='<?php echo $cod; ?>'>
+            <p>Editar datos del usuario:<br></p>
+            <p>Usuario:<br><input value='<?php echo $user; ?>' type="text" name="user" required></p>
+            <p>Contraseña:<br><input type="password" name="pass" required></p>
+            <p>Email:<br><input value='<?php echo $mail; ?>' type="text" name="mail" required></p>
+            <p>Tipo:<br><input value='<?php echo $tipo; ?>' type="text" name="tipo" required></p>
+            <input type="hidden" name="id_miembros" value='<?php echo $id; ?>'>
             <p><input type="submit"  class="btn btn-primary" value="Editar"></p>
           </form>
         </div>
@@ -69,8 +74,11 @@
   <?php else: ?>
 
     <?php
-    $cod = $_POST["id_ingredientes"];
-    $nom = $_POST["nombre"];
+    $id = $_POST["id_miembros"];
+    $user = $_POST["user"];
+    $pass = md5($_POST["pass"]);
+    $mail = $_POST["mail"];
+    $tipo = $_POST["tipo"];
 
     $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
     $connection->set_charset("uft8");
@@ -80,8 +88,8 @@
         exit();
     }
 
-    $c2="UPDATE ingredientes SET nombre='$nom'
-    WHERE id_ingredientes='$cod'";
+    $c2="UPDATE miembros SET user='$user', pass='$pass', mail='$mail', tipo='$tipo'
+    WHERE id_miembros='$id'";
 
     echo $c2;
     if ($result = $connection->query($c2)) {

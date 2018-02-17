@@ -18,9 +18,11 @@
                include("../codigo/cabeceras/usuario.php");
            }
      ?>
+    <div class="container">
      <div class="row justify-content-center">
-         <div class="col-md-10">
+         <div class="col-md-12">
            <img src="../imagenes/contacto.jpg" class="img-fluid" alt="Responsive image" >
          </div>
      </div>
+   </div>
 </body>

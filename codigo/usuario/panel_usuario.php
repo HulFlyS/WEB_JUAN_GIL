@@ -13,10 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
-               include("../codigo/cabeceras/admin.php");
-             } else {
-               include("../codigo/cabeceras/usuario.php");
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+               include("../cabeceras/admin.php");
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
+           } else {
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
@@ -30,7 +33,7 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM ingredientes";
+               $consulta="SELECT * FROM miembros WHERE user='".$_SESSION["user"]."'";
              if ($result = $connection->query($consulta)) {
              ?>
 
@@ -38,22 +41,21 @@
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Ingrediente</th>
+                       <th scope="col">Usuario</th>
+                       <th scope="col">Email</th>
                        <th scope="col">Editar</th>
-                       <th scope="col">Borrar</th>
                      </tr>
                    </thead>
-              </div>
+             </div>
 
              <?php
-                 echo "<a class='btn btn-primary mt-3 mb-3' href='añadir_ingredientes.php'>Añadir Ingrediente </a>";
                  while($obj = $result->fetch_object()) {
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->nombre</th>
-                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
-                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/papelera.png'></a></td>
+                             <th scope='row'>$obj->user</th>
+                             <th scope='row'>$obj->mail</th>
+                             <td><a href='editar_panel_usuario.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
                            </tr>
                            ";
                  }

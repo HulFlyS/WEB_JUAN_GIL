@@ -13,10 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
-               include("../codigo/cabeceras/admin.php");
-             } else {
-               include("../codigo/cabeceras/usuario.php");
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+               include("../cabeceras/admin.php");
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
+           } else {
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
@@ -47,6 +50,7 @@
            $user = $obj->user;
            $pass = $obj->pass;
            $mail = $obj->mail;
+           $tipo = $obj->tipo;
 
          } else {
            echo "No se han recuperado los datos del usuario";
@@ -63,9 +67,9 @@
             <p>Usuario:<br><input value='<?php echo $user; ?>' type="text" name="user" required></p>
             <p>Contraseña:<br><input type="password" name="pass" required></p>
             <p>Email:<br><input value='<?php echo $mail; ?>' type="text" name="mail" required></p>
+            <p>Tipo:<br><input value='<?php echo $tipo; ?>' type="text" name="tipo" required></p>
             <input type="hidden" name="id_miembros" value='<?php echo $id; ?>'>
-            <p><input type="submit" class="btn btn-primary" value="Editar y Cerrar sesión"></p>
-            <p>*Cuanto cambies tús datos se cerrará la sesión y deberas iniciar sesión con tús nuevos datos<br></p>
+            <p><input type="submit"  class="btn btn-primary" value="Editar"></p>
           </form>
         </div>
       </div>
@@ -78,6 +82,7 @@
     $user = $_POST["user"];
     $pass = md5($_POST["pass"]);
     $mail = $_POST["mail"];
+    $tipo = $_POST["tipo"];
 
     $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
     $connection->set_charset("uft8");
@@ -87,12 +92,12 @@
         exit();
     }
 
-    $c2="UPDATE miembros SET user='$user', pass='$pass', mail='$mail'
+    $c2="UPDATE miembros SET user='$user', pass='$pass', mail='$mail', tipo='$tipo'
     WHERE id_miembros='$id'";
 
     echo $c2;
     if ($result = $connection->query($c2)) {
-      include("cerrar_sesion.php");
+      header("Location: /iaw/WEB_JUAN_GIL/codigo/admin/usuarios.php");
     } else {
       echo "Error al actualizar los datos";
     }
@@ -100,5 +105,8 @@
     ?>
 
   <?php endif ?>
+
+
+
 
   </body>

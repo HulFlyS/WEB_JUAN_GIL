@@ -13,24 +13,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
-               include("../codigo/cabeceras/admin.php");
-             } else {
-               include("../codigo/cabeceras/usuario.php");
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+               include("../cabeceras/admin.php");
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
+           } else {
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
      <?php
-        if (isset($_GET["id"])) {
+        if (isset($_GET["ing"])) {
           $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
           if ($connection->connect_errno) {
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          $consulta="DELETE FROM miembros WHERE id_miembros='".$_GET['id']."';";
+          $consulta="DELETE FROM ingredientes WHERE id_ingredientes='".$_GET['ing']."';";
           echo "$consulta";
           if ($result = $connection->query($consulta)) {
-            header("Location: usuarios.php");
+            header("Location: ingredientes.php");
           }
       }
      ?>

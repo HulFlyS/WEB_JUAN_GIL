@@ -13,10 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
-               include("../codigo/cabeceras/admin.php");
-             } else {
-               include("../codigo/cabeceras/usuario.php");
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+               include("../cabeceras/admin.php");
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
+           } else {
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
@@ -30,29 +33,43 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM miembros WHERE user='".$_SESSION["user"]."'";
+               $consulta="SELECT * FROM recetas r JOIN tienen t
+               ON r.id_recetas = t.id_recetas
+               JOIN ingredientes i ON t.id_ingredientes = i.id_ingredientes";
              if ($result = $connection->query($consulta)) {
              ?>
-
              <div class="container">
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Usuario</th>
-                       <th scope="col">Email</th>
+                       <th scope="col">Título</th>
+                       <th scope="col">Ingredientes</th>
+                       <th scope="col">Cantidad</th>
+                       <th scope="col">Texto</th>
+                       <th scope="col">Tiempo</th>
+                       <th scope="col">Nivel</th>
+                       <th scope="col">Imagen</th>
                        <th scope="col">Editar</th>
+                       <th scope="col">Borrar</th>
                      </tr>
                    </thead>
-             </div>
+              </div>
 
              <?php
+                 echo "<a class='btn btn-primary mt-3 mb-3' href='añadir_recetas.php'>Añadir Receta</a>";
                  while($obj = $result->fetch_object()) {
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->user</th>
-                             <th scope='row'>$obj->mail</th>
-                             <td><a href='editar_panel_usuario.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
+                             <th scope='row'>$obj->titulo</th>
+                             <th scope='row'>$obj->nombre</th>
+                             <th scope='row'>$obj->cantidad</th>
+                             <th scope='row'>$obj->texto</th>
+                             <th scope='row'>$obj->tiempo</th>
+                             <th scope='row'>$obj->nivel</th>
+                             <th scope='row'>$obj->imagen</th>
+                             <td><a href='editar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }

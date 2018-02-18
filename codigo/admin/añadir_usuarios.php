@@ -26,9 +26,9 @@
 
         $consulta="INSERT INTO miembros values(NULL,'".$_POST['user']."',md5('".$_POST['pass']."'),'".$_POST['mail']."','usuario');";
         if ($result = $connection->query($consulta)) {
-          echo "Has sido registrado con éxito";
+          header("Location: usuarios.php");
             if ($result->num_rows===0) {
-                echo "LOGIN INVALIDO";
+                echo "Usuario inválido";
               }
           } else {
             echo "Wrong Query";
@@ -37,23 +37,23 @@
     ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
+               include("../cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
+               include("../cabeceras/usuario.php");
            } else {
-             include("../codigo/cabeceras/no_usuario.php");
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
     <div class="container">
      <div class="row mt-6 justify-content-center pt-5">
        <div class="col-sm-7 col-md-4 bg-secondary">
-         <form action="registro.php" method="post">
+         <form action="añadir_usuarios.php" method="post">
            <p>Usuario<br><input name="user" required></p>
            <p>Contraseña<br><input name="pass" type="password" required></p>
            <p>Email<br><input name="mail" required></p>
-           <p><input type="submit"  class="btn btn-warning" value="Registrarse"></p>
+           <p><input type="submit"  class="btn btn-primary" value="Añadir Usuario"></p>
          </form>
        </div>
      </div>

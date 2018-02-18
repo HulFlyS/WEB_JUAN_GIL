@@ -14,19 +14,28 @@
   </head>
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
+               include("../cabeceras/admin.php");
              }
-          if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
            } else {
-             include("../codigo/cabeceras/no_usuario.php");
+             include("../cabeceras/no_usuario.php");
            }
      ?>
-    <div class="container">
-     <div class="row justify-content-center">
-         <div class="col-md-12">
-           <img src="../imagenes/informacion.png" class="img-fluid" alt="Responsive image" >
-         </div>
-     </div>
-   </div>
-</body>
+
+     <?php
+        if (isset($_GET["id"])) {
+          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+          if ($connection->connect_errno) {
+              printf("Connection failed: %s\n", $connection->connect_error);
+              exit();
+          }
+          $consulta="DELETE FROM miembros WHERE id_miembros='".$_GET['id']."';";
+          echo "$consulta";
+          if ($result = $connection->query($consulta)) {
+            header("Location: usuarios.php");
+          }
+      }
+     ?>
+
+   </body>

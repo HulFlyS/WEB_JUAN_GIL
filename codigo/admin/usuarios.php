@@ -13,10 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' ) {
-               include("../codigo/cabeceras/admin.php");
-             } else {
-               include("../codigo/cabeceras/usuario.php");
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+               include("../cabeceras/admin.php");
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+               include("../cabeceras/usuario.php");
+           } else {
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
@@ -57,8 +60,8 @@
                              <th scope='row'>$obj->pass</th>
                              <th scope='row'>$obj->mail</th>
                              <th scope='row'>$obj->tipo</th>
-                             <td><a href='editar_usuarios.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/lapiz.png'></a></td>
-                             <td><a href='borrar_usuarios.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/papelera.png'></a></td>
+                             <td><a href='editar_usuarios.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_usuarios.php?id=$obj->id_miembros'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }

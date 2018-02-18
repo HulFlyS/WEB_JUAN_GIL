@@ -17,10 +17,13 @@
   <body>
 
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["user"])=='admin' ) {
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../codigo/cabeceras/admin.php");
-             } else {
+             }
+          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
                include("../codigo/cabeceras/usuario.php");
+           } else {
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
 
@@ -35,7 +38,7 @@
          user='".$_POST["user"]."' and pass=md5('".$_POST["pass"]."');";
          if ($result = $connection->query($consulta)) {
              if ($result->num_rows===0) {
-                 echo "<h4 class='text-primary ml-5 mt-5'>Login Inválido</h4>";
+                 echo "<h4 class='text-primary ml-5 mt-5'>No existe el usuario</h4>";
                } else {
                  $obj = $result->fetch_object();
                  $tipo=$obj->tipo;
@@ -45,13 +48,13 @@
                  $_SESSION["tipo"]=$tipo;
 
                  if ($tipo=='admin') {
-                   header("Location: layout.php");
+                   header("Location: inicio.php");
                  }
                  elseif ($tipo=='usuario') {
-                   header("Location: layout.php");
+                   header("Location: inicio.php");
                  }
                  else{
-                    header("Location: layout.php");
+                    header("Location: inicio.php");
                  }
                }
            } else {

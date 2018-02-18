@@ -14,12 +14,12 @@
   </head>
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
+               include("../cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
+               include("../cabeceras/usuario.php");
            } else {
-             include("../codigo/cabeceras/no_usuario.php");
+             include("../cabeceras/no_usuario.php");
            }
      ?>
 
@@ -33,40 +33,30 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM recetas r JOIN tienen t
-               ON r.id_recetas = t.id_recetas
-               JOIN ingredientes i ON t.id_ingredientes = i.id_ingredientes";
+               $consulta="SELECT * FROM ingredientes";
              if ($result = $connection->query($consulta)) {
              ?>
+
              <div class="container">
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Título</th>
-                       <th scope="col">Ingredientes</th>
-                       <th scope="col">Cantidad</th>
-                       <th scope="col">Texto</th>
-                       <th scope="col">Tiempo</th>
-                       <th scope="col">Nivel</th>
-                       <th scope="col">Imagen</th>
-                       <th scope="col">Añadir Comentario</th>
+                       <th scope="col">Ingrediente</th>
+                       <th scope="col">Editar</th>
+                       <th scope="col">Borrar</th>
                      </tr>
                    </thead>
               </div>
 
              <?php
+                 echo "<a class='btn btn-primary mt-3 mb-3' href='añadir_ingredientes.php'>Añadir Ingrediente </a>";
                  while($obj = $result->fetch_object()) {
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->titulo</th>
                              <th scope='row'>$obj->nombre</th>
-                             <th scope='row'>$obj->cantidad</th>
-                             <th scope='row'>$obj->texto</th>
-                             <th scope='row'>$obj->tiempo</th>
-                             <th scope='row'>$obj->nivel</th>
-                             <th scope='row'>$obj->imagen</th>
-                             <td><a href='comentarios.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/comentario.png'></a></td>
+                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }

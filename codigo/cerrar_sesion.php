@@ -2,5 +2,5 @@
 <?php
 session_start();
 session_destroy();
-header("Location: ../codigo/layout.php");
+header("Location: /iaw/WEB_JUAN_GIL/codigo/inicio.php");
  ?>

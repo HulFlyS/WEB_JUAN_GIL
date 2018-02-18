@@ -34,21 +34,24 @@
     </div>
       <div class="row bg-dark pt-3 pb-2">
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/layout.php" class="text-justify">Inicio</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/inicio.php" class="text-justify">Inicio</a>
         </div>
         <div class="col-md-2">
           <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Recetas</a>
         </div>
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/editar_recetas.php" class="text-justify">Editar Recetas</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/admin/modificar_recetas.php" class="text-justify">Modificar Recetas</a>
         </div>
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/ingredientes.php" class="text-justify">Ingredientes</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/admin/modificar_valoraciones.php" class="text-justify">Valoraciones</a>
         </div>
         <div class="col-md-2">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/usuarios.php" class="text-justify">Usuarios</a>
+          <a href="/iaw/WEB_JUAN_GIL/codigo/admin/ingredientes.php" class="text-justify">Ingredientes</a>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
+          <a href="/iaw/WEB_JUAN_GIL/codigo/admin/usuarios.php" class="text-justify">Usuarios</a>
+        </div>
+        <div class="col-md-1">
           <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>
         </div>
     </div>

@@ -14,14 +14,15 @@
   </head>
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+               include("../codigo/cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
+               include("../codigo/cabeceras/usuario.php");
            } else {
-             include("../cabeceras/no_usuario.php");
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
+
      <?php
 
              $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
@@ -32,31 +33,33 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM valoraciones";
+               $consulta="SELECT * FROM valoraciones v JOIN recetas r
+               ON v.id_recetas = r.id_recetas JOIN miembros m
+               ON r.id_miembros = m.id_miembros";
+
              if ($result = $connection->query($consulta)) {
              ?>
-
              <div class="container">
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Puntuación</th>
+                       <th scope="col">Usuario</th>
+                       <th scope="col">Receta</th>
                        <th scope="col">Texto</th>
-                       <th scope="col">Borrar</th>
+                       <th scope="col">Puntuacion</th>
                      </tr>
                    </thead>
               </div>
 
              <?php
                  while($obj = $result->fetch_object()) {
-
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->puntuacion</th>
+                             <th scope='row'>$obj->user</th>
+                             <th scope='row'>$obj->titulo</th>
                              <th scope='row'>$obj->texto</th>
-                             <td><a href='borrar_valoraciones.php?id=$obj->id_valoraciones'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/papelera.png'></a></td>
-                           </tr>
-                           ";
+                             <th scope='row'>$obj->puntuacion</th>
+                          </tr>";
                  }
                  echo "</tbody>";
 

@@ -89,7 +89,7 @@
 
     echo $c2;
     if ($result = $connection->query($c2)) {
-      header("Location: /iaw/WEB_JUAN_GIL/codigo/admin/ingredientes.php");
+      header("Location: ingredientes.php");
     } else {
       echo "Error al actualizar el ingrediente";
     }

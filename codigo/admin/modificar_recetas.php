@@ -33,9 +33,7 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM recetas r JOIN tienen t
-               ON r.id_recetas = t.id_recetas
-               JOIN ingredientes i ON t.id_ingredientes = i.id_ingredientes";
+               $consulta="SELECT * FROM recetas";
              if ($result = $connection->query($consulta)) {
              ?>
              <div class="container">
@@ -43,8 +41,6 @@
                    <thead>
                      <tr>
                        <th scope="col">Título</th>
-                       <th scope="col">Ingredientes</th>
-                       <th scope="col">Cantidad</th>
                        <th scope="col">Texto</th>
                        <th scope="col">Tiempo</th>
                        <th scope="col">Nivel</th>
@@ -62,14 +58,12 @@
                      echo "<tbody>
                              <tr>
                              <th scope='row'>$obj->titulo</th>
-                             <th scope='row'>$obj->nombre</th>
-                             <th scope='row'>$obj->cantidad</th>
                              <th scope='row'>$obj->texto</th>
                              <th scope='row'>$obj->tiempo</th>
                              <th scope='row'>$obj->nivel</th>
                              <th scope='row'>$obj->imagen</th>
-                             <td><a href='editar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
-                             <td><a href='borrar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/papelera.png'></a></td>
+                             <td><a href='editar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_recetas.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }

@@ -33,18 +33,15 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM recetas r JOIN tienen t
-               ON r.id_recetas = t.id_recetas
-               JOIN ingredientes i ON t.id_ingredientes = i.id_ingredientes";
-             if ($result = $connection->query($consulta)) {
+               $c1="SELECT * FROM recetas";
+             if ($result = $connection->query($c1)) {
              ?>
              <div class="container">
                  <table class="table">
                    <thead>
                      <tr>
                        <th scope="col">Título</th>
-                       <th scope="col">Ingredientes</th>
-                       <th scope="col">Cantidad</th>
+                       <th scope="col">Ingredientes y Cantidad</th>
                        <th scope="col">Texto</th>
                        <th scope="col">Tiempo</th>
                        <th scope="col">Nivel</th>
@@ -56,26 +53,46 @@
 
              <?php
                  while($obj = $result->fetch_object()) {
+                   $img=$obj->imagen;
+                   $id=$obj->id_recetas;
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->titulo</th>
-                             <th scope='row'>$obj->nombre</th>
-                             <th scope='row'>$obj->cantidad</th>
-                             <th scope='row'>$obj->texto</th>
-                             <th scope='row'>$obj->tiempo</th>
-                             <th scope='row'>$obj->nivel</th>
-                             <th scope='row'>$obj->imagen</th>
-                             <td><a href='comentarios.php?id=$obj->id_recetas'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/comentario.png'></a></td>
-                           </tr>
-                           ";
-                 }
+                             <th scope='row'>$obj->titulo</th>";
+
+
+                    $c2="SELECT * FROM tienen t JOIN ingredientes i
+                          ON t.id_ingredientes = i.id_ingredientes WHERE id_recetas=$id";
+                    if ($result2 = $connection->query($c2)) {
+                        echo "<th>";
+                        while($obj2 = $result2->fetch_object()) {
+                          echo "<p>$obj2->nombre</p>
+                                <p>$obj2->cantidad</p>";
+
+                        }
+
+                        echo "</th>";
+                    }
+
+                    echo "<th scope='row'>$obj->texto</th>
+                    <th scope='row'>$obj->tiempo</th>
+                    <th scope='row'>$obj->nivel</th>
+                    <th scope='row'><img class='img-responsive' width='250px' alt='Responsive image' src='../imagenes/$img'></th>
+                    <td><a href='valoraciones.php?id=$obj->id_recetas'>
+                    <img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/comentario.png'>
+                    </a><br>
+                    <a class='btn btn-primary mt-3' href='ver_valoraciones.php?id=$obj->id_recetas'>Valoraciones</a></td>";
+                    echo "</tr>";
+
                  echo "</tbody>";
 
-                 $result->close();
-                 unset($obj);
-                 unset($connection);
+
              }
+
+             $result->close();
+             unset($obj);
+             unset($connection);
+           }
            ?>
      </table>
 </body>

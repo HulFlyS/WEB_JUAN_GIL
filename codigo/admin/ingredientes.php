@@ -55,8 +55,8 @@
                      echo "<tbody>
                              <tr>
                              <th scope='row'>$obj->nombre</th>
-                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/lapiz.png'></a></td>
-                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/papelera.png'></a></td>
+                             <td><a href='editar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/lapiz.png'></a></td>
+                             <td><a href='borrar_ingredientes.php?ing=$obj->id_ingredientes'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }

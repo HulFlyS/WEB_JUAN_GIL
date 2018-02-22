@@ -2,7 +2,7 @@
   session_start();
 }
 ?>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +23,7 @@
 
         $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
         if ($result = $connection->query($consulta)) {
-          header("Location: ingredientes.php");
-            if ($result->num_rows===0) {
-                echo "Ingrediente inválido";
-              }
+          header("Location: ingredientes.php");                 
           } else {
             echo "Wrong Query";
           }
@@ -46,7 +43,7 @@
     <div class="container">
      <div class="row mt-6 justify-content-center pt-5">
        <div class="col-sm-7 col-md-4 bg-secondary">
-         <form action="ingredientes.php" method="post">
+         <form method="post">
            <p>Introduce aquí un nuevo ingrediente</p>
            <p>Ingrediente<br><input name="nombre" required></p>
            <p><input type="submit"  class="btn btn-primary" value="Añadir Ingrediente"></p>

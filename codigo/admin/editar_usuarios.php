@@ -97,7 +97,7 @@
 
     echo $c2;
     if ($result = $connection->query($c2)) {
-      header("Location: /iaw/WEB_JUAN_GIL/codigo/admin/usuarios.php");
+      header("Location: usuarios.php");
     } else {
       echo "Error al actualizar los datos";
     }

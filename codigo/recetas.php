@@ -80,8 +80,9 @@
                     <th scope='row'><img class='img-responsive' width='250px' alt='Responsive image' src='../imagenes/$img'></th>
                     <td><a href='valoraciones.php?id=$obj->id_recetas'>
                     <img class='img-responsive' width='25px' alt='Responsive image' src='/iaw/WEB_JUAN_GIL/imagenes/comentario.png'>
+                    <a class='btn btn-primary mt-3' href='ver_valoraciones.php?id=$obj->id_recetas'>Ver<br>Valoraciones</a></td>
                     </a><br>
-                    <a class='btn btn-primary mt-3' href='ver_valoraciones.php?id=$obj->id_recetas'>Valoraciones</a></td>";
+                    ";
                     echo "</tr>";
 
                  echo "</tbody>";
@@ -93,6 +94,7 @@
              unset($obj);
              unset($connection);
            }
+
            ?>
      </table>
 </body>

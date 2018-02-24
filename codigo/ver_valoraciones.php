@@ -33,7 +33,7 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM valoraciones v JOIN recetas r
+               $consulta="SELECT m.user, r.titulo, v.texto, v.puntuacion FROM valoraciones v JOIN recetas r
                ON v.id_recetas = r.id_recetas JOIN miembros m
                ON r.id_miembros = m.id_miembros";
 
@@ -53,7 +53,7 @@
 
              <?php
                  while($obj = $result->fetch_object()) {
-                     echo "<tbody>
+                    echo "<tbody>
                              <tr>
                              <th scope='row'>$obj->user</th>
                              <th scope='row'>$obj->titulo</th>

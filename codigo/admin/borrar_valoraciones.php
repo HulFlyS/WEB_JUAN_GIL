@@ -13,6 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../cabeceras/admin.php");
              }
@@ -37,4 +39,9 @@
           }
       }
      ?>
+
+      <?php else: ?>
+          <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+      <?php endif ?>
+      
    </body>

@@ -13,6 +13,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                include("../cabeceras/admin.php");
              }
@@ -32,7 +34,8 @@
                  exit();
              }
 
-               $consulta="SELECT * FROM valoraciones";
+               $consulta="SELECT * FROM valoraciones v JOIN miembros m
+               ON v.id_miembros = m.id_miembros";
              if ($result = $connection->query($consulta)) {
              ?>
 
@@ -40,8 +43,9 @@
                  <table class="table">
                    <thead>
                      <tr>
-                       <th scope="col">Puntuación</th>
+                       <th scope="col">Usuario</th>
                        <th scope="col">Texto</th>
+                       <th scope="col">Puntuación</th>
                        <th scope="col">Borrar</th>
                      </tr>
                    </thead>
@@ -52,8 +56,9 @@
 
                      echo "<tbody>
                              <tr>
-                             <th scope='row'>$obj->puntuacion</th>
+                             <th scope='row'>$obj->user</th>
                              <th scope='row'>$obj->texto</th>
+                             <th scope='row'>$obj->puntuacion</th>
                              <td><a href='borrar_valoraciones.php?id=$obj->id_valoraciones'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/papelera.png'></a></td>
                            </tr>
                            ";
@@ -66,4 +71,9 @@
              }
            ?>
      </table>
+     
+   <?php else: ?>
+     <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+   <?php endif ?>
+
 </body>

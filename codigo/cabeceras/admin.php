@@ -13,12 +13,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') :?>
+
     <div class="container">
       <div class="row bg-dark">
         <div class="col-md-7">
           <h2 class='text-white mt-3'>RECETAS FÁCILES</h2>
         </div>
         <div class="col-md-5">
+
           <?php
           if (isset($_SESSION['user'])) {
             echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
@@ -56,4 +59,7 @@
         </div>
     </div>
   </div>
+  <?php else: ?>
+    <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+  <?php endif ?>
 </body>

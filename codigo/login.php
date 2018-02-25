@@ -18,12 +18,12 @@
 
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
+               include("../codigo/admin/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
+               include("../codigo/usuario/usuario.php");
            } else {
-             include("../codigo/cabeceras/no_usuario.php");
+             include("../codigo/no_usuario.php");
            }
      ?>
 

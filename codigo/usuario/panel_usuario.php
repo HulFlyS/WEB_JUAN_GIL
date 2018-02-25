@@ -15,15 +15,15 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../admin/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("usuario.php");
+             } else {
+               include("../no_usuario.php");
              }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
-           } else {
-             include("../cabeceras/no_usuario.php");
-           }
-     ?>
+       ?>
 
      <?php
 
@@ -74,5 +74,5 @@
    <?php else: ?>
      <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
    <?php endif ?>
-   
+
 </body>

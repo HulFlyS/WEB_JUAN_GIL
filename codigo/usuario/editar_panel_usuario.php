@@ -14,14 +14,14 @@
   </head>
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
-      
+
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+               include("../admin/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
+               include("usuario.php");
            } else {
-             include("../cabeceras/no_usuario.php");
+             include("../no_usuario.php");
            }
      ?>
 

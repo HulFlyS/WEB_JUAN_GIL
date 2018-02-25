@@ -15,15 +15,17 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../codigo/admin/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("../codigo/usuario/usuario.php");
+             } else {
+               include("../codigo/no_usuario.php");
              }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
-     ?>
+       ?>
+
+
 
       <?php else: ?>
         <h1>TIENES QUE ESTAR REGISTRADO PARA AGREGAR VALORACIONES</h1>

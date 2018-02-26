@@ -25,7 +25,35 @@
              }
        ?>
 
+       <?php
+           if (isset($_POST["id_recetas"])) {
+             $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+             if ($connection->connect_errno) {
+                 printf("Connection failed: %s\n", $connection->connect_error);
+                 exit();
+             }
 
+           $consulta="INSERT INTO valoraciones values(NULL,'".$_POST['puntuacion']."','".$_POST['texto']."','".$_POST['id_recetas']."','".$_SESSION['id_miembros']."');";
+           if ($result = $connection->query($consulta)) {
+             header("Location: recetas.php");
+             } else {
+               echo "Wrong Query";
+             }
+         }
+       ?>
+
+       <div class="container">
+        <div class="row mt-6 justify-content-center pt-5">
+          <div class="col-sm-7 col-md-4 bg-secondary">
+            <form method="post">
+              <p>Introduce aquí tú Valoración</p>
+              <p>Puntuación<br><input name="puntuacion" required></p>
+              <p>Texto<br><input name="texto" required></p>
+              <p><input type="submit"  class="btn btn-primary" value="Añadir Valoración"></p>
+            </form>
+          </div>
+        </div>
+      </div>
 
       <?php else: ?>
         <h1>TIENES QUE ESTAR REGISTRADO PARA AGREGAR VALORACIONES</h1>

@@ -15,15 +15,15 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../codigo/cabeceras/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("../codigo/cabeceras/usuario.php");
+             } else {
+               include("../codigo/cabeceras/no_usuario.php");
              }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
-           } else {
-             include("../cabeceras/no_usuario.php");
-           }
-     ?>
+       ?>
 
      <?php
         if (isset($_GET["id"])) {
@@ -32,16 +32,16 @@
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          $consulta="DELETE FROM valoraciones WHERE id_valoraciones='".$_GET['id']."';";
+          $consulta="DELETE FROM miembros WHERE id_miembros='".$_GET['id']."';";
           echo "$consulta";
           if ($result = $connection->query($consulta)) {
-            header("Location: modificar_valoraciones.php");
+            header("Location: usuarios.php");
           }
       }
      ?>
 
       <?php else: ?>
-          <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+        <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
       <?php endif ?>
-      
+
    </body>

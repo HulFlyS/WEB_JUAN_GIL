@@ -37,12 +37,12 @@
     ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/admin/admin.php");
+               include("../codigo/cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/usuario/usuario.php");
+               include("../codigo/cabeceras/usuario.php");
            } else {
-             include("../codigo/no_usuario.php");
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
 

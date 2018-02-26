@@ -2,7 +2,7 @@
   session_start();
 }
 ?>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,45 +15,33 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
 
-    <?php
-        if (isset($_POST["nombre"])) {
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../codigo/cabeceras/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("../codigo/cabeceras/usuario.php");
+             } else {
+               include("../codigo/cabeceras/no_usuario.php");
+             }
+       ?>
+
+     <?php
+        if (isset($_GET["id"])) {
           $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
           if ($connection->connect_errno) {
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-
-        $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
-        if ($result = $connection->query($consulta)) {
-          header("Location: ingredientes.php");
-          } else {
-            echo "Wrong Query";
+          $consulta="DELETE FROM valoraciones WHERE id_valoraciones='".$_GET['id']."';";
+          echo "$consulta";
+          if ($result = $connection->query($consulta)) {
+            header("Location: modificar_valoraciones.php");
           }
       }
-    ?>
-
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
-           } else {
-             include("../cabeceras/no_usuario.php");
-           }
      ?>
 
-    <div class="container">
-     <div class="row mt-6 justify-content-center pt-5">
-       <div class="col-sm-7 col-md-4 bg-secondary">
-         <form method="post">
-           <p>Introduce aquí un nuevo ingrediente</p>
-           <p>Ingrediente<br><input name="nombre" required></p>
-           <p><input type="submit"  class="btn btn-primary" value="Añadir Ingrediente"></p>
-         </form>
-       </div>
-     </div>
-   </div>
-  <?php else: ?>
-    <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
-  <?php endif ?>
-</body>
+      <?php else: ?>
+          <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+      <?php endif ?>
+
+   </body>

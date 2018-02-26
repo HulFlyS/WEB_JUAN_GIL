@@ -15,33 +15,33 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../codigo/cabeceras/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("../codigo/cabeceras/usuario.php");
+             } else {
+               include("../codigo/cabeceras/no_usuario.php");
              }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
-           } else {
-             include("../cabeceras/no_usuario.php");
-           }
-     ?>
+       ?>
 
      <?php
-        if (isset($_GET["id"])) {
+        if (isset($_GET["ing"])) {
           $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
           if ($connection->connect_errno) {
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          $consulta="DELETE FROM miembros WHERE id_miembros='".$_GET['id']."';";
+          $consulta="DELETE FROM ingredientes WHERE id_ingredientes='".$_GET['ing']."';";
           echo "$consulta";
           if ($result = $connection->query($consulta)) {
-            header("Location: usuarios.php");
+            header("Location: ingredientes.php");
           }
       }
      ?>
 
-      <?php else: ?>
-        <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
-      <?php endif ?>
-      
+     <?php else: ?>
+     	<h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
+     <?php endif ?>
+
    </body>

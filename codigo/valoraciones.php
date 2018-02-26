@@ -16,31 +16,32 @@
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-                 include("../codigo/admin/admin.php");
+                 include("../codigo/cabeceras/admin.php");
                }
             elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-                 include("../codigo/usuario/usuario.php");
+                 include("../codigo/cabeceras/usuario.php");
              } else {
-               include("../codigo/no_usuario.php");
+               include("../codigo/cabeceras/no_usuario.php");
              }
        ?>
 
-       <?php
-           if (isset($_POST["id_recetas"])) {
-             $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-             if ($connection->connect_errno) {
-                 printf("Connection failed: %s\n", $connection->connect_error);
-                 exit();
-             }
+        <?php
+            if (isset($_GET["id"])) {
+              $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+              if ($connection->connect_errno) {
+                  printf("Connection failed: %s\n", $connection->connect_error);
+                  exit();
+              }
 
-           $consulta="INSERT INTO valoraciones values(NULL,'".$_POST['puntuacion']."','".$_POST['texto']."','".$_POST['id_recetas']."','".$_SESSION['id_miembros']."');";
-           if ($result = $connection->query($consulta)) {
-             header("Location: recetas.php");
-             } else {
-               echo "Wrong Query";
-             }
-         }
-       ?>
+            $consulta="INSERT INTO valoraciones values(NULL,'".$_POST['puntuacion']."','".$_POST['texto']."','".$_GET['id']."','".$_SESSION['idm']."');";
+            echo $consulta;
+            if ($result = $connection->query($consulta)) {
+              header("Location: recetas.php");
+              } else {
+                echo "Wrong Query";
+              }
+          }
+        ?>
 
        <div class="container">
         <div class="row mt-6 justify-content-center pt-5">

@@ -18,12 +18,12 @@
 
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/admin/admin.php");
+               include("../codigo/cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/usuario/usuario.php");
+               include("../codigo/cabeceras/usuario.php");
            } else {
-             include("../codigo/no_usuario.php");
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
 
@@ -42,7 +42,9 @@
                } else {
                  $obj = $result->fetch_object();
                  $tipo=$obj->tipo;
+                 $id_miembros=$obj->id_miembros;
 
+                 $_SESSION["idm"]=$id_miembros;
                  $_SESSION["user"]=$_POST["user"];
                  $_SESSION["language"]="es";
                  $_SESSION["tipo"]=$tipo;

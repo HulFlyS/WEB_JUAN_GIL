@@ -15,15 +15,15 @@
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
 
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../cabeceras/admin.php");
+      <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
+                 include("../codigo/cabeceras/admin.php");
+               }
+            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
+                 include("../codigo/cabeceras/usuario.php");
+             } else {
+               include("../codigo/cabeceras/no_usuario.php");
              }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../cabeceras/usuario.php");
-           } else {
-             include("../cabeceras/no_usuario.php");
-           }
-     ?>
+       ?>
      <?php
 
              $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
@@ -59,7 +59,7 @@
                              <th scope='row'>$obj->user</th>
                              <th scope='row'>$obj->texto</th>
                              <th scope='row'>$obj->puntuacion</th>
-                             <td><a href='borrar_valoraciones.php?id=$obj->id_valoraciones'><img class='img-responsive' width='25px' alt='Responsive image' src='../../imagenes/papelera.png'></a></td>
+                             <td><a href='borrar_valoraciones.php?id=$obj->id_valoraciones'><img class='img-responsive' width='25px' alt='Responsive image' src='../imagenes/papelera.png'></a></td>
                            </tr>
                            ";
                  }
@@ -71,7 +71,7 @@
              }
            ?>
      </table>
-     
+
    <?php else: ?>
      <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
    <?php endif ?>

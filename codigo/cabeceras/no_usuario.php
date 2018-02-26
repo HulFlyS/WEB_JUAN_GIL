@@ -13,8 +13,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario' )  :?>
-
     <div class="container">
       <div class="row bg-dark">
         <div class="col-md-7">
@@ -24,32 +22,26 @@
           <?php
           if (isset($_SESSION['user'])) {
             echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
-            echo "<a class='btn btn-primary' href='/iaw/WEB_JUAN_GIL/codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
+            echo "<a class='btn btn-primary' href='../codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
           }
           else{
             echo "<h4 class='text-white mt-2'>No estás conectado, logueate o registrate</h4>";
-            echo "<a class='btn btn-primary mr-5' href='/iaw/WEB_JUAN_GIL/codigo/login.php'>Iniciar Sesión  </a>";
-            echo "<a class='btn btn-warning' href='/iaw/WEB_JUAN_GIL/codigo/registro.php'>Registrate</a>";
+            echo "<a class='btn btn-primary mr-5' href='../codigo/login.php'>Iniciar Sesión  </a>";
+            echo "<a class='btn btn-warning' href='../codigo/registro.php'>Registrate</a>";
           }
            ?>
       </div>
     </div>
       <div class="row bg-dark pt-3 pb-2">
-        <div class="col-md-3">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/inicio.php" class="text-justify">Inicio</a>
+        <div class="col-md-4">
+          <a href="../codigo/inicio.php" class="text-justify">Inicio</a>
         </div>
-        <div class="col-md-3">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/recetas.php" class="text-justify">Recetas</a>
+        <div class="col-md-4">
+          <a href="../codigo/recetas.php" class="text-justify">Recetas</a>
         </div>
-        <div class="col-md-3">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/usuario/panel_usuario.php?id=$obj->id_miembros" class="text-justify">Panel usuario</a>
-        </div>
-        <div class="col-md-3">
-          <a href="/iaw/WEB_JUAN_GIL/codigo/contacto.php" class="text-justify">Contacto</a>
+        <div class="col-md-4">
+          <a href="../codigo/contacto.php" class="text-justify">Contacto</a>
         </div>
     </div>
   </div>
-  <?php else: ?>
-    <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
-  <?php endif ?>
 </body>

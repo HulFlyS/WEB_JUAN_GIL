@@ -13,15 +13,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
+    
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/admin/admin.php");
+               include("../codigo/cabeceras/admin.php");
              }
           elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/usuario/usuario.php");
+               include("../codigo/cabeceras/usuario.php");
            } else {
-             include("../codigo/no_usuario.php");
+             include("../codigo/cabeceras/no_usuario.php");
            }
      ?>
+
     <div class="container">
      <div class="row justify-content-center">
          <div>

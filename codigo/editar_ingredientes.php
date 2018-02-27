@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -13,23 +13,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin')  :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-                 include("../codigo/cabeceras/admin.php");
-               }
-            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-                 include("../codigo/cabeceras/usuario.php");
-             } else {
-               include("../codigo/cabeceras/no_usuario.php");
-             }
+        include("../codigo/cabeceras/admin.php");
+      } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+                include("../codigo/cabeceras/usuario.php");
+            } else {
+                include("../codigo/cabeceras/no_usuario.php");
+            }
        ?>
 
      <?php if (!isset($_POST["id_ingredientes"])) : ?>
 
        <?php
 
-         $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+         $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
          $connection->set_charset("uft8");
 
          if ($connection->connect_errno) {
@@ -39,21 +38,19 @@
 
          $c1="SELECT * from ingredientes where id_ingredientes='".$_GET["ing"]."'";
 
-         if ($result = $connection->query($c1))  {
+         if ($result = $connection->query($c1)) {
+             $obj = $result->fetch_object();
 
-           $obj = $result->fetch_object();
+             if ($result->num_rows==0) {
+                 echo "No existe el ingrediente";
+                 exit();
+             }
 
-           if ($result->num_rows==0) {
-             echo "No existe el ingrediente";
-             exit();
-           }
-
-           $cod = $obj->id_ingredientes;
-           $nom = $obj->nombre;
-
+             $cod = $obj->id_ingredientes;
+             $nom = $obj->nombre;
          } else {
-           echo "No se han recuperar los datos del ingrediente";
-           exit();
+             echo "No se han recuperar los datos del ingrediente";
+             exit();
          }
 
        ?>
@@ -78,7 +75,7 @@
     $cod = $_POST["id_ingredientes"];
     $nom = $_POST["nombre"];
 
-    $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+    $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
     $connection->set_charset("uft8");
 
     if ($connection->connect_errno) {
@@ -91,9 +88,9 @@
 
     echo $c2;
     if ($result = $connection->query($c2)) {
-      header("Location: ingredientes.php");
+        header("Location: ingredientes.php");
     } else {
-      echo "Error al actualizar el ingrediente";
+        echo "Error al actualizar el ingrediente";
     }
 
     $result->close();

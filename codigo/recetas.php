@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -14,18 +14,17 @@
   </head>
   <body>
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
+      include("../codigo/cabeceras/admin.php");
+    } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+              include("../codigo/cabeceras/usuario.php");
+          } else {
+              include("../codigo/cabeceras/no_usuario.php");
+          }
      ?>
 
      <?php
 
-             $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+             $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
              $connection->set_charset("uft8");
 
              if ($connection->connect_errno) {
@@ -35,7 +34,7 @@
 
                $c1="SELECT * FROM recetas";
              if ($result = $connection->query($c1)) {
-             ?>
+                 ?>
              <div class="container">
                  <table class="table">
                    <thead>
@@ -52,29 +51,28 @@
               </div>
 
              <?php
-                 while($obj = $result->fetch_object()) {
-                   $img=$obj->imagen;
-                   $id=$obj->id_recetas;
+                 while ($obj = $result->fetch_object()) {
+                     $img=$obj->imagen;
+                     $id=$obj->id_recetas;
 
                      echo "<tbody>
                              <tr>
                              <th scope='row'>$obj->titulo</th>";
 
 
-                    $c2="SELECT * FROM tienen t JOIN ingredientes i
+                     $c2="SELECT * FROM tienen t JOIN ingredientes i
                           ON t.id_ingredientes = i.id_ingredientes WHERE id_recetas=$id";
-                    if ($result2 = $connection->query($c2)) {
-                        echo "<th>";
-                        while($obj2 = $result2->fetch_object()) {
-                          echo "<p>$obj2->nombre</p>
+                     if ($result2 = $connection->query($c2)) {
+                         echo "<th>";
+                         while ($obj2 = $result2->fetch_object()) {
+                             echo "<p>$obj2->nombre</p>
                                 <p>$obj2->cantidad</p>";
+                         }
 
-                        }
+                         echo "</th>";
+                     }
 
-                        echo "</th>";
-                    }
-
-                    echo "<th scope='row'>$obj->texto</th>
+                     echo "<th scope='row'>$obj->texto</th>
                     <th scope='row'>$obj->tiempo</th>
                     <th scope='row'>$obj->nivel</th>
                     <th scope='row'><img class='img-responsive' width='250px' alt='Responsive image' src='../imagenes/$img'></th>
@@ -83,17 +81,15 @@
                     <a class='btn btn-primary mt-3' href='ver_valoraciones.php?id=$obj->id_recetas'>Ver<br>Valoraciones</a></td>
                     </a><br>
                     ";
-                    echo "</tr>";
+                     echo "</tr>";
 
-                 echo "</tbody>";
+                     echo "</tbody>";
+                 }
 
-
+                 $result->close();
+                 unset($obj);
+                 unset($connection);
              }
-
-             $result->close();
-             unset($obj);
-             unset($connection);
-           }
 
            ?>
      </table>

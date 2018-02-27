@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <!DOCTYPE html>
@@ -18,56 +18,52 @@
 
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
+      include("../codigo/cabeceras/admin.php");
+    } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+              include("../codigo/cabeceras/usuario.php");
+          } else {
+              include("../codigo/cabeceras/no_usuario.php");
+          }
      ?>
 
      <?php
          if (isset($_POST["user"])) {
-           $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-           if ($connection->connect_errno) {
-               printf("Connection failed: %s\n", $connection->connect_error);
-               exit();
-           }
-         $consulta="select * from miembros where
+             $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+             if ($connection->connect_errno) {
+                 printf("Connection failed: %s\n", $connection->connect_error);
+                 exit();
+             }
+             $consulta="select * from miembros where
          user='".$_POST["user"]."' and pass=md5('".$_POST["pass"]."');";
-         if ($result = $connection->query($consulta)) {
-             if ($result->num_rows===0) {
-                 echo "<h4 class='text-primary ml-5 mt-5'>No existe el usuario</h4>";
-               } else {
-                 $obj = $result->fetch_object();
-                 $tipo=$obj->tipo;
-                 $id_miembros=$obj->id_miembros;
+             if ($result = $connection->query($consulta)) {
+                 if ($result->num_rows===0) {
+                     echo "<h4 class='text-primary ml-5 mt-5'>No existe el usuario</h4>";
+                 } else {
+                     $obj = $result->fetch_object();
+                     $tipo=$obj->tipo;
+                     $id_miembros=$obj->id_miembros;
 
-                 $_SESSION["idm"]=$id_miembros;
-                 $_SESSION["user"]=$_POST["user"];
-                 $_SESSION["language"]="es";
-                 $_SESSION["tipo"]=$tipo;
+                     $_SESSION["idm"]=$id_miembros;
+                     $_SESSION["user"]=$_POST["user"];
+                     $_SESSION["language"]="es";
+                     $_SESSION["tipo"]=$tipo;
 
-                 if ($tipo=='admin') {
-                   header("Location: inicio.php");
+                     if ($tipo=='admin') {
+                         header("Location: inicio.php");
+                     } elseif ($tipo=='usuario') {
+                         header("Location: inicio.php");
+                     } else {
+                         header("Location: inicio.php");
+                     }
                  }
-                 elseif ($tipo=='usuario') {
-                   header("Location: inicio.php");
-                 }
-                 else{
-                    header("Location: inicio.php");
-                 }
-               }
 
-               $result->close();
-               unset($obj);
-               unset($connection);
-               
-           } else {
-             echo "Wrong Query";
-           }
-       }
+                 $result->close();
+                 unset($obj);
+                 unset($connection);
+             } else {
+                 echo "Wrong Query";
+             }
+         }
 
 
      ?>

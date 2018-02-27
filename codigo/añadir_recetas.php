@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin')  :?>
 
     <?php
 
@@ -25,32 +25,26 @@
             exit();
         }
         if (isset($_POST["user"])) {
-
-
-        $consulta="INSERT INTO recetas values(NULL,'".$_POST['titulo']."','".$_POST['texto']."','".$_POST['tiempo']."','".$_POST['nivel']."','".$_POST['imagen']."');";
-        if ($result = $connection->query($consulta)) {
-          header("Location: usuarios.php");
-            if ($result->num_rows===0) {
-                echo "Usuario inválido";
-              }
-          } else {
-            echo "Wrong Query";
-          }
-        $receta=$connection->insert_id;
-
-
-
-      }
+            $consulta="INSERT INTO recetas values(NULL,'".$_POST['titulo']."','".$_POST['texto']."','".$_POST['tiempo']."','".$_POST['nivel']."','".$_POST['imagen']."');";
+            if ($result = $connection->query($consulta)) {
+                header("Location: usuarios.php");
+                if ($result->num_rows===0) {
+                    echo "Usuario inválido";
+                }
+            } else {
+                echo "Wrong Query";
+            }
+            $receta=$connection->insert_id;
+        }
     ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
+        include("../codigo/cabeceras/admin.php");
+    } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+              include("../codigo/cabeceras/usuario.php");
+          } else {
+              include("../codigo/cabeceras/no_usuario.php");
+          }
      ?>
 
     <div class="container">
@@ -77,15 +71,13 @@
              $c2="SELECT * FROM ingredientes ORDER BY nombre";
 
              if ($result2=$connection->query($c2)) {
-
-               while($obj2=$result2->fetch_object()) {
-                 echo "<option value='".$obj2->id_ingredientes."'>";
-                 echo $obj2->nombre;
-                 echo "</option>";
-
-               }
+                 while ($obj2=$result2->fetch_object()) {
+                     echo "<option value='".$obj2->id_ingredientes."'>";
+                     echo $obj2->nombre;
+                     echo "</option>";
+                 }
              } else {
-               echo "NO SE HA PODIDO RECUPERAR DATOS";
+                 echo "NO SE HA PODIDO RECUPERAR DATOS";
              }
              echo "</select>";
            ?></th>

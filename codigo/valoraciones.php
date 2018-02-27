@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -16,31 +16,30 @@
     <?php if (isset($_SESSION["user"])) :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-                 include("../codigo/cabeceras/admin.php");
-               }
-            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-                 include("../codigo/cabeceras/usuario.php");
-             } else {
-               include("../codigo/cabeceras/no_usuario.php");
-             }
+        include("../codigo/cabeceras/admin.php");
+      } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+                include("../codigo/cabeceras/usuario.php");
+            } else {
+                include("../codigo/cabeceras/no_usuario.php");
+            }
        ?>
 
         <?php
             if (isset($_POST["texto"])) {
-              $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-              if ($connection->connect_errno) {
-                  printf("Connection failed: %s\n", $connection->connect_error);
-                  exit();
-              }
+                $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+                if ($connection->connect_errno) {
+                    printf("Connection failed: %s\n", $connection->connect_error);
+                    exit();
+                }
 
-            $consulta="INSERT INTO valoraciones values(NULL,'".$_POST['puntuacion']."','".$_POST['texto']."','".$_GET['id']."','".$_SESSION['idm']."');";
-            echo $consulta;
-            if ($result = $connection->query($consulta)) {
-              header("Location: recetas.php");
-              } else {
-                echo "Wrong Query";
-              }
-          }
+                $consulta="INSERT INTO valoraciones values(NULL,'".$_POST['puntuacion']."','".$_POST['texto']."','".$_GET['id']."','".$_SESSION['idm']."');";
+                echo $consulta;
+                if ($result = $connection->query($consulta)) {
+                    header("Location: recetas.php");
+                } else {
+                    echo "Wrong Query";
+                }
+            }
         ?>
 
        <div class="container">

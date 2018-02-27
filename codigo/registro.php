@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <!DOCTYPE html>
@@ -18,32 +18,31 @@
 
     <?php
         if (isset($_POST["user"])) {
-          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+            $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+            if ($connection->connect_errno) {
+                printf("Connection failed: %s\n", $connection->connect_error);
+                exit();
+            }
 
-        $consulta="INSERT INTO miembros values(NULL,'".$_POST['user']."',md5('".$_POST['pass']."'),'".$_POST['mail']."','usuario');";
-        if ($result = $connection->query($consulta)) {
-          echo "Has sido registrado con éxito";
-            if ($result->num_rows===0) {
-                echo "LOGIN INVALIDO";
-              }
-          } else {
-            echo "Wrong Query";
-          }
-      }
+            $consulta="INSERT INTO miembros values(NULL,'".$_POST['user']."',md5('".$_POST['pass']."'),'".$_POST['mail']."','usuario');";
+            if ($result = $connection->query($consulta)) {
+                echo "Has sido registrado con éxito";
+                if ($result->num_rows===0) {
+                    echo "LOGIN INVALIDO";
+                }
+            } else {
+                echo "Wrong Query";
+            }
+        }
     ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
+        include("../codigo/cabeceras/admin.php");
+    } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+              include("../codigo/cabeceras/usuario.php");
+          } else {
+              include("../codigo/cabeceras/no_usuario.php");
+          }
      ?>
 
     <div class="container">

@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="es">
@@ -13,33 +13,32 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin')  :?>
 
     <?php
         if (isset($_POST["nombre"])) {
-          $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
+            $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
+            if ($connection->connect_errno) {
+                printf("Connection failed: %s\n", $connection->connect_error);
+                exit();
+            }
 
-        $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
-        if ($result = $connection->query($consulta)) {
-          header("Location: ingredientes.php");
-          } else {
-            echo "Wrong Query";
-          }
-      }
+            $consulta="INSERT INTO ingredientes values(NULL,'".$_POST['nombre']."');";
+            if ($result = $connection->query($consulta)) {
+                header("Location: ingredientes.php");
+            } else {
+                echo "Wrong Query";
+            }
+        }
     ?>
 
     <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-               include("../codigo/cabeceras/admin.php");
-             }
-          elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-               include("../codigo/cabeceras/usuario.php");
-           } else {
-             include("../codigo/cabeceras/no_usuario.php");
-           }
+        include("../codigo/cabeceras/admin.php");
+    } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+              include("../codigo/cabeceras/usuario.php");
+          } else {
+              include("../codigo/cabeceras/no_usuario.php");
+          }
      ?>
 
     <div class="container">

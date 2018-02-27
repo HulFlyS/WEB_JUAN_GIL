@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -13,23 +13,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin' )  :?>
+    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin')  :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-                 include("../codigo/cabeceras/admin.php");
-               }
-            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-                 include("../codigo/cabeceras/usuario.php");
-             } else {
-               include("../codigo/cabeceras/no_usuario.php");
-             }
+        include("../codigo/cabeceras/admin.php");
+      } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+                include("../codigo/cabeceras/usuario.php");
+            } else {
+                include("../codigo/cabeceras/no_usuario.php");
+            }
        ?>
 
      <?php if (!isset($_POST["id_miembros"])) : ?>
 
        <?php
 
-         $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+         $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
          $connection->set_charset("uft8");
 
          if ($connection->connect_errno) {
@@ -39,24 +38,22 @@
 
          $c1="SELECT * from miembros where id_miembros='".$_GET["id"]."'";
 
-         if ($result = $connection->query($c1))  {
+         if ($result = $connection->query($c1)) {
+             $obj = $result->fetch_object();
 
-           $obj = $result->fetch_object();
+             if ($result->num_rows==0) {
+                 echo "No existe el usuario";
+                 exit();
+             }
 
-           if ($result->num_rows==0) {
-             echo "No existe el usuario";
-             exit();
-           }
-
-           $id = $obj->id_miembros;
-           $user = $obj->user;
-           $pass = $obj->pass;
-           $mail = $obj->mail;
-           $tipo = $obj->tipo;
-
+             $id = $obj->id_miembros;
+             $user = $obj->user;
+             $pass = $obj->pass;
+             $mail = $obj->mail;
+             $tipo = $obj->tipo;
          } else {
-           echo "No se han recuperado los datos del usuario";
-           exit();
+             echo "No se han recuperado los datos del usuario";
+             exit();
          }
 
        ?>
@@ -86,7 +83,7 @@
     $mail = $_POST["mail"];
     $tipo = $_POST["tipo"];
 
-    $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+    $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
     $connection->set_charset("uft8");
 
     if ($connection->connect_errno) {
@@ -99,9 +96,9 @@
 
     echo $c2;
     if ($result = $connection->query($c2)) {
-      header("Location: usuarios.php");
+        header("Location: usuarios.php");
     } else {
-      echo "Ese usuario ya existe";
+        echo "Ese usuario ya existe";
     }
 
     $result->close();

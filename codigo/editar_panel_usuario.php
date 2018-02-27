@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -16,38 +16,37 @@
     <?php if (isset($_SESSION["user"])) :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
-                 include("../codigo/cabeceras/admin.php");
-               }
-            elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario')  {
-                 include("../codigo/cabeceras/usuario.php");
-             } else {
-               include("../codigo/cabeceras/no_usuario.php");
-             }
+        include("../codigo/cabeceras/admin.php");
+      } elseif (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') {
+                include("../codigo/cabeceras/usuario.php");
+            } else {
+                include("../codigo/cabeceras/no_usuario.php");
+            }
        ?>
 
      <?php if (!isset($_POST["id_miembros"])) : ?>
 
        <?php
-         $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+         $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
          $connection->set_charset("uft8");
          if ($connection->connect_errno) {
              printf("Connection failed: %s\n", $connection->connect_error);
              exit();
          }
          $c1="SELECT * from miembros where id_miembros='".$_GET["id"]."'";
-         if ($result = $connection->query($c1))  {
-           $obj = $result->fetch_object();
-           if ($result->num_rows==0) {
-             echo "No existe el usuario";
-             exit();
-           }
-           $id = $obj->id_miembros;
-           $user = $obj->user;
-           $pass = $obj->pass;
-           $mail = $obj->mail;
+         if ($result = $connection->query($c1)) {
+             $obj = $result->fetch_object();
+             if ($result->num_rows==0) {
+                 echo "No existe el usuario";
+                 exit();
+             }
+             $id = $obj->id_miembros;
+             $user = $obj->user;
+             $pass = $obj->pass;
+             $mail = $obj->mail;
          } else {
-           echo "No se han recuperado los datos del usuario";
-           exit();
+             echo "No se han recuperado los datos del usuario";
+             exit();
          }
        ?>
 
@@ -74,7 +73,7 @@
     $user = $_POST["user"];
     $pass = md5($_POST["pass"]);
     $mail = $_POST["mail"];
-    $connection = new mysqli("localhost", "root", "Admin2015", "web",3316);
+    $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
     $connection->set_charset("uft8");
     if ($connection->connect_errno) {
         printf("Connection failed: %s\n", $connection->connect_error);
@@ -84,11 +83,11 @@
     WHERE id_miembros='$id'";
     echo $c2;
     if ($result = $connection->query($c2)) {
-      include("cerrar_sesion.php");
+        include("cerrar_sesion.php");
     } else {
-      echo "Datos duplicados, introduzca otros";
+        echo "Datos duplicados, introduzca otros";
     }
-    
+
     $result->close();
     unset($obj);
     unset($connection);

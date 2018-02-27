@@ -1,5 +1,5 @@
-<?php if (!isset($_SESSION)){
-  session_start();
+<?php if (!isset($_SESSION)) {
+    session_start();
 }
 ?>
 <html lang="en">
@@ -24,13 +24,12 @@
 
           <?php
           if (isset($_SESSION['user'])) {
-            echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
-            echo "<a class='btn btn-primary' href='../codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
-          }
-          else{
-            echo "<h4 class='text-white mt-2'>No estás conectado, logueate o registrate</h4>";
-            echo "<a class='btn btn-primary mr-5' href='../codigo/login.php'>Iniciar Sesión  </a>";
-            echo "<a class='btn btn-warning' href='../codigo/registro.php'>Registrate</a>";
+              echo "<h4 class='text-white mt-2'>Estás logueado como $_SESSION[user]</h4>";
+              echo "<a class='btn btn-primary' href='../codigo/cerrar_sesion.php'>Cerrar Sesión</a>";
+          } else {
+              echo "<h4 class='text-white mt-2'>No estás conectado, logueate o registrate</h4>";
+              echo "<a class='btn btn-primary mr-5' href='../codigo/login.php'>Iniciar Sesión  </a>";
+              echo "<a class='btn btn-warning' href='../codigo/registro.php'>Registrate</a>";
           }
            ?>
       </div>

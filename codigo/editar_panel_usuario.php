@@ -84,10 +84,15 @@
     WHERE id_miembros='$id'";
     echo $c2;
     if ($result = $connection->query($c2)) {
-      include("../cerrar_sesion.php");
+      include("cerrar_sesion.php");
     } else {
       echo "Datos duplicados, introduzca otros";
     }
+    
+    $result->close();
+    unset($obj);
+    unset($connection);
+
     ?>
 
   <?php endif ?>

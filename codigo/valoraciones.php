@@ -49,7 +49,7 @@
             <form method="post">
               <p>Introduce aquí tú Valoración</p>
               <p>Puntuación (entre 0 y 5)<br><input name="puntuacion" required></p>
-              <p>Comentario<br><input name="texto" required></p>
+              <p>Comentario<br><textarea name="texto" required></textarea></p>
               <p><input type="submit"  class="btn btn-primary" value="Añadir Valoración"></p>
             </form>
           </div>

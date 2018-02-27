@@ -96,6 +96,10 @@
       echo "Error al actualizar el ingrediente";
     }
 
+    $result->close();
+    unset($obj);
+    unset($connection);
+
     ?>
 
   <?php endif ?>
@@ -103,5 +107,6 @@
     <?php else: ?>
       <h1>NO TIENES PERMISOS PARA ACCEDER AQUI</h1>
     <?php endif ?>
+
 
   </body>

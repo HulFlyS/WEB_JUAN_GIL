@@ -103,6 +103,10 @@
       echo "Error al actualizar los datos";
     }
 
+    $result->close();
+    unset($obj);
+    unset($connection);
+
     ?>
 
   <?php endif ?>

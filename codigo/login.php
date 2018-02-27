@@ -59,6 +59,11 @@
                     header("Location: inicio.php");
                  }
                }
+
+               $result->close();
+               unset($obj);
+               unset($connection);
+               
            } else {
              echo "Wrong Query";
            }

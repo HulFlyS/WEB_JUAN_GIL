@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.20, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
 --
--- Host: 192.168.1.60    Database: web
+-- Host: localhost    Database: web
 -- ------------------------------------------------------
 -- Server version	5.5.41-0ubuntu0.14.04.1
 
@@ -26,7 +26,7 @@ CREATE TABLE `ingredientes` (
   `id_ingredientes` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_ingredientes`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `ingredientes` (
 
 LOCK TABLES `ingredientes` WRITE;
 /*!40000 ALTER TABLE `ingredientes` DISABLE KEYS */;
-INSERT INTO `ingredientes` VALUES (1,'Tomate'),(2,'Diente de ajo'),(3,'Pan'),(4,'Jamón picado'),(5,'Huevo cocido'),(6,'Vinagre'),(7,'Sal'),(8,'Aceite de oliva'),(9,'Cebolla'),(10,'Calabacín'),(11,'Caldo de pollo'),(12,'Quesito'),(13,'Pimienta negra'),(14,'Queso Parmesano');
+INSERT INTO `ingredientes` VALUES (1,'Tomate'),(2,'Diente de ajo'),(3,'Pan'),(4,'JamÃ³n picado'),(5,'Huevo cocido'),(6,'Vinagre'),(7,'Sal'),(8,'Aceite de oliva'),(9,'Cebolla'),(10,'CalabacÃ­n'),(11,'Caldo de pollo'),(12,'Quesito'),(13,'Pimienta negra'),(14,'Queso Parmesano'),(17,'Harina'),(20,'Agua');
 /*!40000 ALTER TABLE `ingredientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `miembros` (
   PRIMARY KEY (`id_miembros`),
   UNIQUE KEY `user` (`user`),
   UNIQUE KEY `mail` (`mail`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `miembros` (
 
 LOCK TABLES `miembros` WRITE;
 /*!40000 ALTER TABLE `miembros` DISABLE KEYS */;
-INSERT INTO `miembros` VALUES (1,'HulFlyS','7ed1ca45414f40612d0c469e24453e40','juagilest@gmail.com','admin');
+INSERT INTO `miembros` VALUES (1,'HulFlyS','7ed1ca45414f40612d0c469e24453e40','juagilest@gmail.com','admin'),(2,'juan','7ed1ca45414f40612d0c469e24453e40','juan@juan.com','usuario'),(12,'pepe','7ed1ca45414f40612d0c469e24453e40','pepe@pepe.com','usuario');
 /*!40000 ALTER TABLE `miembros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `recetas` (
   `id_miembros` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_recetas`),
   KEY `id_miembros` (`id_miembros`),
-  CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`id_miembros`) REFERENCES `miembros` (`id_miembros`)
+  CONSTRAINT `recetas_ibfk_1` FOREIGN KEY (`id_miembros`) REFERENCES `miembros` (`id_miembros`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -95,7 +95,7 @@ CREATE TABLE `recetas` (
 
 LOCK TABLES `recetas` WRITE;
 /*!40000 ALTER TABLE `recetas` DISABLE KEYS */;
-INSERT INTO `recetas` VALUES (1,'Salmorejo','-Ponemos dos cucharas de aceite de oliva en la sartén y echamos el ajo picado. Lo tenemos a fuego suave hasta que se dore, y lo apartamos.\n-Lavamos y troceamos los tomates. A continuación lo echamos todo en el vaso de la batidora, junto con el ajo picado, el aceite, un chorrito de vinagre, una pizca de sal y un trocito de pan. Lo batimos todo y vamos echando pan hasta que tengamos la consistencia de un puré, y lo probamos. Si nos gusta más fuerte echamos más vinagre.\n-Una vez está a tu gusto, lo vuelcas todo en un chino para quitar las pepitas y la piel del tomate. Y servir.\n-Picamos un huevo, un poco de jamón y los echamos al servirlo','00:45:00','medio','salmorejo.jpg',1),(2,'Crema de calabacín','Paso 1. En una cazuela grande, agrega el caldo (o el agua con las patillas de caldo), el aceite de oliva virgen, la cebolla, el ajo y el calabacín. Ponlo a calentar a fuego medio, tápalo y deja que empiece a hervir. En el momento en que llegue a ebullición, reduce la temperatura.\nPaso 2. Deja que siga cocinero todo con la tapa puesta, removiendo los ingredientes ocasionalmente durante unos 20 minutos, hasta que todos los componentes estén tiernos (pincha con un tenedor los vegetales para ver si están bien cocidos).\nPaso 3. Retira del fuego la cazuela, incorpora los quesitos y, en la misma cazuela, bate todo el contenido con una batidora de mano, hasta que todo esté fino y no tenga ningún tropiezo.\nPaso 4. Sazona la crema de calabacín con sal y pimienta negra al gusto, rectificando si es necesario, y sírvelo caliente en platos individuales, con un poco de queso parmesano rallado por encima.','00:30:00','medio','crema_de_calabacin.jpg',1);
+INSERT INTO `recetas` VALUES (1,'Salmorejo','-Ponemos dos cucharas de aceite de oliva en la sartÃ©n y echamos el ajo picado. Lo tenemos a fuego suave hasta que se dore, y lo apartamos. -Lavamos y troceamos los tomates. A continuaciÃ³n lo echamos todo en el vaso de la batidora, junto con el ajo picado, el aceite, un chorrito de vinagre, una pizca de sal y un trocito de pan. Lo batimos todo y vamos echando pan hasta que tengamos la consistencia de un purÃ©, y lo probamos. Si nos gusta mÃ¡s fuerte echamos mÃ¡s vinagre. -Una vez estÃ¡ a tu gusto, lo vuelcas todo en un chino para quitar las pepitas y la piel del tomate. Y servir. -Picamos un huevo, un poco de jamÃ³n y los echamos al servirlo.','00:45:00','medio','salmorejo.jpg',1),(2,'Crema de calabacÃ­n','Paso 1. En una cazuela grande, agrega el caldo (o el agua con las patillas de caldo), el aceite de oliva virgen, la cebolla, el ajo y el calabacÃ­n. Ponlo a calentar a fuego medio, tÃ¡palo y deja que empiece a hervir. En el momento en que llegue a ebulliciÃ³n, reduce la temperatura.\nPaso 2. Deja que siga cocinero todo con la tapa puesta, removiendo los ingredientes ocasionalmente durante unos 20 minutos, hasta que todos los componentes estÃ©n tiernos (pincha con un tenedor los vegetales para ver si estÃ¡n bien cocidos).\nPaso 3. Retira del fuego la cazuela, incorpora los quesitos y, en la misma cazuela, bate todo el contenido con una batidora de mano, hasta que todo estÃ© fino y no tenga ningÃºn tropiezo.\nPaso 4. Sazona la crema de calabacÃ­n con sal y pimienta negra al gusto, rectificando si es necesario, y sÃ­rvelo caliente en platos individuales, con un poco de queso parmesano rallado por encima.','00:30:00','medio','crema_de_calabacin.jpg',1);
 /*!40000 ALTER TABLE `recetas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,8 +112,8 @@ CREATE TABLE `tienen` (
   `cantidad` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_recetas`,`id_ingredientes`),
   KEY `id_ingredientes` (`id_ingredientes`),
-  CONSTRAINT `tienen_ibfk_1` FOREIGN KEY (`id_recetas`) REFERENCES `recetas` (`id_recetas`),
-  CONSTRAINT `tienen_ibfk_2` FOREIGN KEY (`id_ingredientes`) REFERENCES `ingredientes` (`id_ingredientes`)
+  CONSTRAINT `tienen_ibfk_1` FOREIGN KEY (`id_recetas`) REFERENCES `recetas` (`id_recetas`) ON DELETE CASCADE,
+  CONSTRAINT `tienen_ibfk_2` FOREIGN KEY (`id_ingredientes`) REFERENCES `ingredientes` (`id_ingredientes`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -143,9 +143,9 @@ CREATE TABLE `valoraciones` (
   PRIMARY KEY (`id_valoraciones`),
   KEY `id_recetas` (`id_recetas`),
   KEY `id_miembros` (`id_miembros`),
-  CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_recetas`) REFERENCES `recetas` (`id_recetas`),
-  CONSTRAINT `valoraciones_ibfk_2` FOREIGN KEY (`id_miembros`) REFERENCES `miembros` (`id_miembros`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `valoraciones_ibfk_1` FOREIGN KEY (`id_recetas`) REFERENCES `recetas` (`id_recetas`) ON DELETE CASCADE,
+  CONSTRAINT `valoraciones_ibfk_2` FOREIGN KEY (`id_miembros`) REFERENCES `miembros` (`id_miembros`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +154,7 @@ CREATE TABLE `valoraciones` (
 
 LOCK TABLES `valoraciones` WRITE;
 /*!40000 ALTER TABLE `valoraciones` DISABLE KEYS */;
+INSERT INTO `valoraciones` VALUES (5,5,'Me gustÃ³ la receta',1,2),(10,4,'Me gusta mucho la receta, muy buena!',2,12);
 /*!40000 ALTER TABLE `valoraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -166,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-16 12:50:48
+-- Dump completed on 2018-02-27 19:07:24

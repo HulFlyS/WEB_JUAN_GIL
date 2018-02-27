@@ -104,6 +104,10 @@
       echo "Ese usuario ya existe";
     }
 
+    $result->close();
+    unset($obj);
+    unset($connection);
+
     ?>
 
   <?php endif ?>

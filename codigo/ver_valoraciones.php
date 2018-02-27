@@ -33,9 +33,9 @@
                  exit();
              }
 
-               $consulta="SELECT m.user, r.titulo, v.texto, v.puntuacion FROM valoraciones v JOIN recetas r
-               ON v.id_recetas = r.id_recetas JOIN miembros m
-               ON r.id_miembros = m.id_miembros";
+               $consulta="SELECT m.user, r.titulo, v.texto, v.puntuacion FROM recetas r JOIN valoraciones v
+               ON r.id_recetas = v.id_recetas JOIN miembros m 
+               ON v.id_miembros = m.id_miembros";
 
              if ($result = $connection->query($consulta)) {
              ?>

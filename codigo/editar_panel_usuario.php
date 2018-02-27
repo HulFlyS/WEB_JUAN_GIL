@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
+    <?php if (isset($_SESSION["user"])) :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                  include("../codigo/cabeceras/admin.php");

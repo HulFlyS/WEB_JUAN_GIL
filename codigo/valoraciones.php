@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
   </head>
   <body>
-    <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='usuario') :?>
+    <?php if (isset($_SESSION["user"])) :?>
 
       <?php if (isset($_SESSION["user"])&&($_SESSION["tipo"])=='admin') {
                  include("../codigo/cabeceras/admin.php");
@@ -26,7 +26,7 @@
        ?>
 
         <?php
-            if (isset($_GET["id"])) {
+            if (isset($_POST["texto"])) {
               $connection = new mysqli("localhost", "root", "Admin2015", "web", 3316);
               if ($connection->connect_errno) {
                   printf("Connection failed: %s\n", $connection->connect_error);
@@ -48,8 +48,8 @@
           <div class="col-sm-7 col-md-4 bg-secondary">
             <form method="post">
               <p>Introduce aquí tú Valoración</p>
-              <p>Puntuación<br><input name="puntuacion" required></p>
-              <p>Texto<br><input name="texto" required></p>
+              <p>Puntuación (entre 0 y 5)<br><input name="puntuacion" required></p>
+              <p>Comentario<br><input name="texto" required></p>
               <p><input type="submit"  class="btn btn-primary" value="Añadir Valoración"></p>
             </form>
           </div>
